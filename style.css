@@ -421,7 +421,7 @@ h2 {
 
 /* ---------- Contact ---------- */
 
-.contact-section .section-shell { align-items: end; }
+.contact-section .section-shell { align-items: start; }
 .contact-links {
   display: flex;
   flex-wrap: wrap;
