@@ -422,6 +422,7 @@ h2 {
 /* ---------- Contact ---------- */
 
 .contact-section .section-shell { align-items: start; }
+.contact-section .section-shell > div:first-child { margin-top: -40px; }
 .contact-links {
   display: flex;
   flex-wrap: wrap;
