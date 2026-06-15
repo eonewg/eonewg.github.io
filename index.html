@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Eone 的个人主页：学习、系统、工具与长期成长。" />
+<title>Eone · 学习、系统与个人主页</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACEklEQVR4nDVSS24TQRCtT0/PjO3ERMHBAoSE+G/YsCNsYMcSLsFduAKnQFyBJQu2EUEChRA7iu3YnhnPp7sLVduU1D0zPe9V1XtdaNOeiCASMSOivgMgkvdOJCAiCIiEIBoIYERE/xvDbPREPOiRELN3OyDEFXclAMVgYw0nPriqLEQ8IfoQIGZV9G5HozW1JTYmydLcuXZ8OOz1+ghSN81qtbyYXipaswMimPjQCobZi9iER0O7KpZN69q2Q/GGuXMOYgkAJaAymKI+jet1eXZx2baOifYGfUTSthFVBEjEaUXwqi845+ZFK2ASm2ZZikgHB/uJid7EMACydVNE8izNk7Ssyhv9NLc8Wxaua4raERFE7UpQVxWshoQQrit//Hj0/vhBkiSz1ebTl2+n5/Pa7ZKCCEWc9861XVNV1WbTTpb+6f3bb18+Oxpm308niBT+96MOGZNF0YaMMSYRgfH41ouHo6O8/fz1JLWJSPh5NmNDIXgdAiUAIDGSfvYH/cyazNpf51MI/t2rR4tKTv4s/k6mpPYIiag7AHEKQvj44c3r53eGg2yvlz25u9907qr0TeeYeXvfFD2NWO97uf3xe3o+nRdlXdXtoM9Xq2oyW6+Lkom2LiGz3c4fANg0NYRN04xHh7Nlce+mLRtYt1hvNl3XBe8QdZZQ71q91dU5LwDOCxNOFm1Vd2mehxAUFeMfH0pddQDUvqAAAAAASUVORK5CYII=" />
+<style>
+  :root {
+    --paper: #fefdf8;
+    --ink: #161512;
+    --ink-soft: #3d3932;
+    --muted: #7a7469;
+    --faint: #b4ada0;
+    --line: rgba(22, 21, 18, 0.16);
+    --line-soft: rgba(22, 21, 18, 0.08);
+    --accent: #1f5f6f;
+    --accent-wash: rgba(31, 95, 111, 0.055);
+    --max: 1120px;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, SimSun, Georgia, "Times New Roman", serif;
+    --mono: "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    --topbar-bg: rgba(254, 253, 248, .88);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141310;
+      --ink: #e8e4d9;
+      --ink-soft: #c4bfae;
+      --muted: #8a8477;
+      --faint: #5e594e;
+      --line: rgba(232, 228, 217, 0.14);
+      --line-soft: rgba(232, 228, 217, 0.07);
+      --accent: #5cb8c9;
+      --accent-wash: rgba(92, 184, 201, 0.08);
+      --topbar-bg: rgba(20, 19, 16, .92);
+    }
+    body::before {
+      background:
+        radial-gradient(circle at 78% 8%, rgba(92,184,201,.035), transparent 28%),
+        linear-gradient(90deg, rgba(232,228,217,.012) 1px, transparent 1px) !important;
+      background-size: auto, 84px 84px !important;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    background: var(--paper);
+    font-family: var(--serif);
+    line-height: 1.78;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 78% 8%, rgba(31,95,111,.045), transparent 28%),
+      linear-gradient(90deg, rgba(22,21,18,.014) 1px, transparent 1px);
+    background-size: auto, 84px 84px;
+    opacity: .7;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent-wash); color: var(--accent); }
+
+  .page {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 58px;
+    background: var(--topbar-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .35s ease;
+  }
+  .topbar.scrolled { border-bottom-color: var(--line-soft); }
+  .brand {
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -.02em;
+  }
+  .nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .nav a { transition: color .25s ease; }
+  .nav a:hover { color: var(--ink); }
+
+  .mono, .kicker, .issue-line, .hero-actions, .meta-label, .section-kicker, .run-in, .work-tag, .contact-links, .footer-note {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: .11em;
+  }
+
+  .hero {
+    min-height: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: clamp(38px, 6vw, 76px);
+    align-items: center;
+    padding: 54px 0 58px;
+    border-bottom: 1px solid var(--line);
+  }
+  .issue-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    align-items: center;
+    color: var(--accent);
+    font-size: 12px;
+    margin-bottom: 22px;
+  }
+  .issue-line span:not(:last-child)::after {
+    content: "/";
+    margin-left: 16px;
+    color: var(--faint);
+  }
+  h1 {
+    margin: 0;
+    max-width: 790px;
+    font-size: clamp(46px, 5.7vw, 78px);
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: -.052em;
+  }
+  .hero-subtitle {
+    margin: 18px 0 0;
+    color: var(--ink-soft);
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.45;
+    font-weight: 500;
+    letter-spacing: -.035em;
+  }
+  .hero-deck {
+    max-width: 720px;
+    margin: 20px 0 0;
+    color: var(--ink-soft);
+    font-size: 20px;
+    line-height: 1.7;
+  }
+  .hero-deck::first-letter {
+    float: left;
+    margin: .1em .16em 0 0;
+    font-size: 2.8em;
+    line-height: .8;
+    color: var(--ink);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 32px;
+    font-size: 13px;
+  }
+  .hero-actions a {
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 3px;
+    color: var(--ink);
+    transition: color .25s ease, border-color .25s ease, gap .25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+  }
+  .hero-actions a::after {
+    content: '→';
+    opacity: 0;
+    margin-left: -8px;
+    transition: opacity .25s ease, margin-left .25s ease;
+  }
+  .hero-actions a:hover {
+    color: var(--accent);
+    gap: 6px;
+  }
+  .hero-actions a:hover::after {
+    opacity: 1;
+    margin-left: 0;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--line);
+    margin-bottom: 20px;
+    display: block;
+    transition: border-color .35s ease;
+  }
+  .avatar:hover { border-color: var(--accent); }
+
+  .editor-note {
+    align-self: start;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .editor-note p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.82;
+  }
+  .editor-note .meta-label {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 18px;
+  }
+  .fact-list {
+    margin-top: 20px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .fact-row {
+    display: grid;
+    grid-template-columns: 102px 1fr;
+    gap: 18px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .fact-row .meta-label { color: var(--faint); font-size: 10px; }
+  .fact-row span:last-child { color: var(--ink-soft); font-size: 14px; line-height: 1.65; }
+
+  .section {
+    padding: 82px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-shell {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1fr);
+    gap: clamp(42px, 8vw, 104px);
+    align-items: start;
+  }
+  .section-kicker {
+    color: var(--accent);
+    font-size: 11px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin: 0;
+    max-width: 430px;
+    font-size: clamp(28px, 3.8vw, 48px);
+    font-weight: 500;
+    letter-spacing: -.048em;
+    line-height: 1.04;
+  }
+  .section-lede {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 20px;
+    line-height: 1.7;
+  }
+  .section-lede + .section-lede { margin-top: 26px; }
+
+  .brief-list {
+    margin-top: 44px;
+    border-top: 1px solid var(--line);
+  }
+  .brief-item {
+    display: grid;
+    grid-template-columns: 136px 1fr;
+    gap: 28px;
+    padding: 25px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .run-in {
+    color: var(--ink);
+    font-size: 12px;
+  }
+  .brief-item p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.95;
+  }
+
+  .method-copy {
+    display: grid;
+    gap: 28px;
+  }
+  .method-copy p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .method-points {
+    margin-top: 46px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line-soft);
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .method-point {
+    background: var(--paper);
+    padding: 26px 24px 28px 0;
+  }
+  .method-point:nth-child(even) { padding-left: 24px; padding-right: 0; }
+  .method-point strong {
+    display: block;
+    margin-bottom: 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+  }
+  .method-point span {
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+
+  .work-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line-soft);
+    border-top: 1px solid var(--line);
+    margin-top: 56px;
+  }
+
+  .works-header { margin-bottom: 0; }
+  .works-header .section-kicker { margin-bottom: 24px; }
+  .works-header h2 { margin: 0 0 20px; max-width: 520px; }
+  .works-header .section-lede { max-width: 560px; }
+
+  .work-item {
+    background: var(--paper);
+    padding: 36px 28px 38px 28px;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    transition: border-color .25s ease, background .25s ease;
+  }
+  .work-item:hover {
+    border-left-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 4%, var(--paper));
+  }
+  .work-tag {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .work-item h3 {
+    margin: 0 0 12px;
+    font-size: clamp(24px, 2.6vw, 30px);
+    font-weight: 500;
+    letter-spacing: -.032em;
+    line-height: 1.2;
+  }
+  .work-item h3 a {
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s ease;
+  }
+  .work-item:hover h3 a { border-bottom-color: var(--accent); }
+  .work-item p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.95;
+    font-size: 16px;
+  }
+
+  .contact-section .section-shell { align-items: end; }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    margin-top: 42px;
+    font-size: 12px;
+  }
+  .contact-links a {
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .contact-links a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 34px 0 48px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .footer-note { font-size: 11px; color: var(--faint); }
+  .back-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-bottom: 1px solid var(--line-soft);
+    padding-bottom: 3px;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .back-top:hover { color: var(--accent); border-color: var(--accent); }
+  .fade-in { opacity: 1; transform: none; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .page { width: min(100% - 34px, var(--max)); }
+    .nav { gap: 14px; font-size: 10px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding: 74px 0 82px; }
+    .editor-note { max-width: 680px; }
+    .section { padding: 78px 0; }
+    .section-shell { grid-template-columns: 1fr; gap: 28px; }
+    h2 { max-width: 720px; }
+    .method-points { grid-template-columns: 1fr; }
+    .method-point, .method-point:nth-child(even) { padding: 24px 0; }
+    .work-list { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 560px) {
+    .topbar { min-height: 58px; }
+    .nav { gap: 10px; font-size: 9px; letter-spacing: .06em; }
+    h1 { font-size: clamp(48px, 15vw, 72px); }
+    .hero-deck::first-letter { float: none; margin: 0; font-size: 1em; line-height: inherit; }
+    .avatar { width: 100px; height: 100px; }
+    .fact-row, .brief-item { grid-template-columns: 1fr; gap: 6px; }
+    .section-lede { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#top" aria-label="Eone home">Eone</a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#current">Current</a>
+      <a href="#method">Method</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy fade-in">
+        <div class="issue-line"><span>Eone</span><span>Learning Systems</span><span>Beijing</span></div>
+        <h1 id="hero-title">Learning, tools, and craft.</h1>
+        <p class="hero-subtitle">学习、工具，与长期精进。</p>
+        <p class="hero-deck">
+          这里是 Eone 的学习现场：北邮大数据本科生，记录技术、表达、AI 工作流，以及一个人如何把热情训练成稳定能力。
+        </p>
+        <div class="hero-actions" aria-label="Quick links">
+          <a href="#current">看看现在</a>
+          <a href="/blog/">Blog</a>
+          <a href="https://github.com/eonewg" rel="noopener" target="_blank">GitHub &middot; eonewg</a>
+          <a href="mailto:yizeee@126.com">Mail</a>
+        </div>
+      </div>
+      <aside class="editor-note fade-in" aria-label="Editorial note">
+        <img class="avatar" src="avatar.webp" alt="Eone" width="140" height="140" />
+        <span class="meta-label">For readers outside my daily context</span>
+        <p>我在把学习、任务、资料、AI 助理和个人服务器整理成一个能长期运转的系统。这个页面是入口，也是持续生长的工作台。</p>
+        <div class="fact-list" aria-label="Profile facts">
+          <div class="fact-row"><span class="meta-label">Base</span><span>Beijing / BUPT Data</span></div>
+          <div class="fact-row"><span class="meta-label">Focus</span><span>CS fundamentals, algorithms, English, writing</span></div>
+          <div class="fact-row"><span class="meta-label">Workflow</span><span>AI assistant, memory, tasks, archives</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section fade-in" id="current" aria-labelledby="current-title">
+      <div class="section-shell">
+        <div>
+          <div class="section-kicker">Current Dispatch</div>
+          <h2 id="current-title">Build. Study. Sharpen.</h2>
+        </div>
+        <div>
+          <p class="section-lede">
+            英文给页面一个清晰的外部骨架，中文留下真实的学习现场：我希望陌生人能快速定位我，也让熟人看得出这些内容确实从我的日常里长出来。
+          </p>
+          <div class="brief-list">
+            <div class="brief-item">
+              <span class="run-in">Site</span>
+              <p>主页跑在自己的云服务器上，Nginx 托管，持续迭代页面结构和内容密度。</p>
+            </div>
+            <div class="brief-item">
+              <span class="run-in">Study</span>
+              <p>计算机基础、算法、英语表达、网页设计，以及如何让 AI 助理真正接入自己的工作流。</p>
+            </div>
+            <div class="brief-item">
+              <span class="run-in">Next</span>
+              <p>作品、文章、学习记录和工具实验正在逐步沉淀到这里，形成一个长期更新的入口。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in" id="method" aria-labelledby="method-title">
+      <div class="section-shell">
+        <div>
+          <div class="section-kicker">Working Method</div>
+          <h2 id="method-title">把混乱热情训练成稳定能力。</h2>
+        </div>
+        <div>
+          <div class="method-copy">
+            <p>我更关心系统，而不是一时的灵感：怎么安排学习节奏，怎么用输出倒逼理解，怎么让工具替自己减少重复劳动，怎么让每一次练习都留下可回看的痕迹。</p>
+            <p>具体来说，我给自己设了一条流水线：每天固定时间输入，遇到问题立即验证，有价值的结论整理归档，定期回头删掉噪音、收紧结构。不追求一次学透，追求每次都比上次更扎实。</p>
+          </div>
+          <div class="method-points" aria-label="Operating protocol">
+            <div class="method-point"><strong>Input</strong><span>课程、书、文章、代码、问题和日常观察——有意识地控制输入质量和节奏。</span></div>
+            <div class="method-point"><strong>Verify</strong><span>先核查，再判断；用题目、运行结果和事实来源检验想法，不靠感觉下结论。</span></div>
+            <div class="method-point"><strong>Archive</strong><span>把有价值的东西整理成可以复用的笔记、页面、任务或工具，让知识可被未来的自己调用。</span></div>
+            <div class="method-point"><strong>Iterate</strong><span>不断删掉噪音，留下真正能推进长期目标的结构，让系统越跑越轻。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in" id="works" aria-labelledby="works-title">
+      <div class="works-header">
+        <div class="section-kicker">Open Projects</div>
+        <h2 id="works-title">Projects in progress.</h2>
+        <p class="section-lede">这里是我正在持续推进的几个方向。</p>
+      </div>
+      <div class="work-list">
+        <article class="work-item">
+          <span class="work-tag">Public Entrance</span>
+          <h3><a href="/blog/">个人主页 / 公开入口</a></h3>
+          <p>用云服务器和 Nginx 部署的个人主页。后续会接上作品、文章、学习记录和公开复盘。</p>
+        </article>
+        <article class="work-item">
+          <span class="work-tag">Personal System</span>
+          <h3><a href="https://github.com/eonewg" rel="noopener" target="_blank">AI 助理与个人系统</a></h3>
+          <p>把日程、任务、资料归档、记忆和远程服务器操作接入日常流程，让工具真的帮自己做事。</p>
+        </article>
+        <article class="work-item">
+          <span class="work-tag">Study Archive</span>
+          <h3><a href="/blog/archives/">学习记录与长期复盘</a></h3>
+          <p>从输入、练习、验证到复盘，把备考和技术学习沉淀成可回看的轨迹。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact-section fade-in" id="contact" aria-labelledby="contact-title">
+      <div class="section-shell">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2 id="contact-title">Find me here.</h2>
+        </div>
+        <div>
+          <p class="section-lede">
+            如果你也在搭建自己的学习系统，或者想用 AI 工具提升日常效率，欢迎从这里联系我。
+          </p>
+          <div class="contact-links">
+            <a href="mailto:yizeee@126.com">yizeee@126.com</a>
+            <a href="https://github.com/eonewg" rel="noopener" target="_blank">github.com/eonewg</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>&copy; 2026 Eone. All rights reserved.</span>
+    <span class="footer-note">Build in public, learn in private.</span>
+    <a class="back-top" href="#top">↑ Top</a>
+  </footer>
+</div>
+
+<script>
+  const topbar = document.getElementById('topbar');
+  function onScroll() {
+    topbar.classList.toggle('scrolled', window.scrollY > 12);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
