@@ -295,6 +295,10 @@ h2 {
   margin-top: 44px;
   border-top: 1px solid var(--line);
 }
+.brief-list:first-child {
+  margin-top: 0;
+  border-top: none;
+}
 .brief-item {
   display: grid;
   grid-template-columns: 136px 1fr;
@@ -318,60 +322,11 @@ h2 {
   line-height: 1.95;
 }
 
-/* ---------- Method ---------- */
-
-.method-copy {
-  display: grid;
-  gap: 28px;
-}
-.method-copy p {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.8;
-}
-.method-divider {
-  margin-top: 46px;
-  border-top: 1px solid var(--line-soft);
-}
-.method-points {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-}
-.method-point {
-  background: var(--paper);
-  padding: 16px 0 16px 18px;
-  border-left: 2px solid transparent;
-  transition: border-color .25s ease, background .25s ease;
-  display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 12px;
-  align-items: baseline;
-}
-.method-point:hover {
-  border-left-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 3%, var(--paper));
-}
-.method-point strong {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .11em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.method-point span {
-  color: var(--ink-soft);
-  line-height: 1.8;
-  font-size: 15px;
-}
-
 /* ---------- Works ---------- */
 
 .work-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background: var(--line-soft);
   border-top: 1px solid var(--line);
@@ -486,8 +441,6 @@ footer {
   .section { padding: 78px 0; }
   .section-shell { grid-template-columns: 1fr; gap: 28px; }
   h2 { max-width: 720px; }
-  .method-points { grid-template-columns: 1fr; }
-  .method-point { padding: 16px 0 16px 18px; }
   .work-list { grid-template-columns: 1fr; }
   footer { flex-direction: column; align-items: flex-start; }
 }
@@ -501,7 +454,5 @@ footer {
   .avatar { width: 100px; height: 100px; }
   .fact-row, .brief-item { grid-template-columns: 1fr; gap: 6px; }
   .brief-item { padding-left: 14px; }
-  .method-point { grid-template-columns: 1fr; gap: 4px; }
-  .method-point strong { margin-bottom: 2px; }
   .section-lede { font-size: 17px; }
 }
