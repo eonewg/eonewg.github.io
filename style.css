@@ -313,7 +313,11 @@ h2 {
 }
 .run-in {
   color: var(--ink);
+  font-family: var(--serif);
   font-size: 20px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
 }
 .brief-item p {
   margin: 0;
