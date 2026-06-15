@@ -307,6 +307,7 @@ h2 {
   border-bottom: 1px solid var(--line-soft);
   border-left: 2px solid transparent;
   transition: border-color .25s ease, background .25s ease;
+  align-items: baseline;
 }
 .brief-item:hover {
   border-left-color: var(--accent);
